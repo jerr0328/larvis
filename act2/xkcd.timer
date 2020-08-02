@@ -1,0 +1,10 @@
+[Unit]
+Description=Fetch an XKCD comic every hour
+Requires=xkcd.service
+
+[Timer]
+Unit=xkcd.service
+OnCalendar=hourly
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,16 @@
+[Unit]
+Description=XKCD Fetcher
+After=multi-user.target
+
+[Service]
+User=pi
+Type=oneshot
+WorkingDirectory=/home/pi/larvis
+ExecStart=/usr/bin/python3 -m act2.xkcd
+Restart=on-failure
+RestartSec=60
+Environment=PYTHONUNBUFFERED=1
+Environment=XKCD_COMICS_DIR=/home/pi/xkcd
+
+[Install]
+WantedBy=multi-user.target

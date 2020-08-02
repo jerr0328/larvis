@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>I saved the world by rebooting the computer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+{% block content %}
+<div class="container">
+    <h1>I Saved the World Again</h1>
+    {% for item in object_list %}
+    <div class="divider"></div>
+    <article class="section">
+        <header>
+            <h3>{{ item.when }}</h3>
+            {% if item.who.all %}
+            <address>Thanks to {{ item.who.all|join:", " }}</address>
+            {% endif %}
+        </header>
+        <p>{{ item.how }}</p>
+    </article>
+    {% endfor %}
+</div>
+{% endblock %}
+
+
+</html>

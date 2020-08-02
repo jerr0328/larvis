@@ -1,0 +1,21 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: xkcd
+spec:
+  schedule: "0 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: xkcd
+              image: larvis-act2
+              volumeMounts:
+                - name: xkcd
+                  mountPath: /xkcd
+          restartPolicy: OnFailure
+          volumes:
+            - name: xkcd
+              persistentVolumeClaim:
+                claimName: xkcd-pv

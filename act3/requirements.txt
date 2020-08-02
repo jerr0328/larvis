@@ -1,0 +1,4 @@
+django
+environs
+gunicorn
+psycopg2-binary

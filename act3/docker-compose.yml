@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+  web:
+    build:
+      context: .
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    command: scripts/dev-entrypoint.sh
+    volumes:
+      - ./:/usr/src/app
+    environment:
+      - SQL_USER=larvis
+      - SQL_PASSWORD=correcthorse
+      - SQL_DB=savingworld
+      - SQL_HOST=db
+      - SQL_PORT=5432
+      - DEBUG=true
+  db:
+    image: postgres:12-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=larvis
+      - POSTGRES_PASSWORD=correcthorse
+      - POSTGRES_DB=savingworld
+
+volumes:
+  postgres_data:
